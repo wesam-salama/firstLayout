@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:layouts/pages/page2.dart';
+import 'package:layouts/Navigation_pages//page2.dart';
 
 class Page1 extends StatelessWidget {
   const Page1({super.key});
@@ -10,6 +10,7 @@ class Page1 extends StatelessWidget {
       backgroundColor: Colors.indigo,
       appBar: AppBar(
         title: Text('Page 1'),
+        // elevation: ,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

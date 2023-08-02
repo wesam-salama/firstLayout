@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:layouts/pages/page4.dart';
-import 'package:layouts/pages/page6.dart';
+import 'package:layouts/Navigation_pages/page4.dart';
+import 'package:layouts/Navigation_pages/page6.dart';
 
 class Page3 extends StatelessWidget {
   const Page3({super.key});
