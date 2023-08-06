@@ -3,17 +3,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:layouts/Navigation_pages/page3.dart';
 import 'package:layouts/Navigation_pages/page1.dart';
 import 'package:layouts/Navigation_pages/page2.dart';
-import 'package:layouts/buttom_navigation_bar_screens/favorites_screen.dart';
-import 'package:layouts/buttom_navigation_bar_screens/home_screen.dart';
-import 'package:layouts/buttom_navigation_bar_screens/profile_screen.dart';
-import 'package:layouts/buttom_navigation_bar_screens/track_screen.dart';
-import 'package:layouts/splach/splach_screen.dart';
+
+import 'package:layouts/helpers/sp_helper.dart';
+import 'package:layouts/screens/auth/login_screen.dart';
+import 'package:layouts/screens/splach/splach_screen.dart';
 import 'package:layouts/widgets/cat_item.dart';
 import 'package:layouts/widgets/home_item.dart';
 import 'package:layouts/widgets/main_cat_section.dart';
 import 'package:layouts/widgets/special_offers_item.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SPHelper.spHelper.initSharedPreferences();
   runApp(const MyApp());
 }
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
 
-        home: SplachScreen()
+        home: LoginScreen()
+        // SplachScreen()
         // NavigationWorkSpase(),
         );
   }

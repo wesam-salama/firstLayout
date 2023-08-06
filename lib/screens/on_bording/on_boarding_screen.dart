@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:layouts/on_bording/content_section.dart';
+import 'package:layouts/helpers/sp_helper.dart';
+import 'package:layouts/screens/buttom_navigation_bar_screens/buttom_navigation_bar_screen.dart';
+
+import 'package:layouts/screens/on_bording/widgets/content_section.dart';
+import 'package:layouts/screens/on_bording/widgets/dot_Indecator.dart';
 
 class OnboardingScrren extends StatefulWidget {
   OnboardingScrren({super.key});
@@ -25,25 +29,33 @@ class _OnboardingScrrenState extends State<OnboardingScrren> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               width: double.infinity,
               height: 28,
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 17),
-                child: Text(
-                  'Skip',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+            Visibility(
+              visible: !(checkIfLastPage()),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 17),
+                  child: InkWell(
+                    onTap: () {
+                      closeOnBoarding();
+                    },
+                    child: const Text(
+                      'Skip',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
-              height: 110,
+            const SizedBox(
+              height: 50,
             ),
             Expanded(
               child: PageView.builder(
@@ -51,8 +63,6 @@ class _OnboardingScrrenState extends State<OnboardingScrren> {
                 onPageChanged: (newPageIndex) {
                   setState(() {
                     _pageIndex = newPageIndex;
-                    controller.jumpToPage(newPageIndex);
-                    // controller.animateToPage(_pageIndex, duration: Duration(milliseconds: 350), curve: Curves.easeIn);
                     print(_pageIndex);
                   });
                 },
@@ -66,33 +76,68 @@ class _OnboardingScrrenState extends State<OnboardingScrren> {
                 },
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ...List.generate(
+                    onBoardData.length,
+                    (index) => Padding(
+                          padding: const EdgeInsets.only(right: 4),
+                          child: DotIndicator(
+                            isActive: index == _pageIndex,
+                          ),
+                        ))
+              ],
+            ),
+            const SizedBox(
+              height: 50,
+            ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 49),
+              padding: const EdgeInsets.symmetric(horizontal: 49),
               child: ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Color(0xff5BE07A))),
+                          MaterialStateProperty.all(const Color(0xff5BE07A))),
                   onPressed: () {
-                    setState(() {
-                      _pageIndex++;
-                    });
+                    if (checkIfLastPage()) {
+                      closeOnBoarding();
+                    } else {
+                      setState(() {
+                        _pageIndex++;
+                        controller.animateToPage(_pageIndex,
+                            duration: const Duration(milliseconds: 350),
+                            curve: Curves.easeIn);
+                      });
+                    }
                   },
                   child: Text(
-                    'Continue',
-                    style: TextStyle(
+                    checkIfLastPage() ? 'Get Started' : 'Continue',
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                         color: Colors.white),
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
           ],
         ),
       ),
     );
+  }
+
+  bool checkIfLastPage() {
+    return (_pageIndex == onBoardData.length - 1);
+  }
+
+  closeOnBoarding() {
+    SPHelper.spHelper.storeUserStatus();
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+      return ButtomNavigationScreen();
+    }));
   }
 }
 

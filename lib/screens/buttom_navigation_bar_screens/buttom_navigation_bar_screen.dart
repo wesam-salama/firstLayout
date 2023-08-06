@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:layouts/buttom_navigation_bar_screens/favorites_screen.dart';
-import 'package:layouts/buttom_navigation_bar_screens/home_screen.dart';
-import 'package:layouts/buttom_navigation_bar_screens/profile_screen.dart';
-import 'package:layouts/buttom_navigation_bar_screens/track_screen.dart';
+import 'package:layouts/screens/buttom_navigation_bar_screens/favorites_screen.dart';
+import 'package:layouts/screens/buttom_navigation_bar_screens/home_screen.dart';
+import 'package:layouts/screens/buttom_navigation_bar_screens/profile_screen.dart';
+import 'package:layouts/screens/buttom_navigation_bar_screens/track_screen.dart';
+
 
 class ButtomNavigationScreen extends StatefulWidget {
   ButtomNavigationScreen({super.key});
