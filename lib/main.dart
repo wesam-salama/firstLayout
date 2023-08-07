@@ -6,11 +6,15 @@ import 'package:layouts/Navigation_pages/page2.dart';
 
 import 'package:layouts/helpers/sp_helper.dart';
 import 'package:layouts/screens/auth/login_screen.dart';
+import 'package:layouts/screens/provider_state/provider_controller.dart';
+import 'package:layouts/screens/provider_state/provider_controllrt_2.dart';
+import 'package:layouts/screens/provider_state/provider_state_screen.dart';
 import 'package:layouts/screens/splach/splach_screen.dart';
 import 'package:layouts/widgets/cat_item.dart';
 import 'package:layouts/widgets/home_item.dart';
 import 'package:layouts/widgets/main_cat_section.dart';
 import 'package:layouts/widgets/special_offers_item.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +36,18 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
 
-        home: LoginScreen()
+        home: MultiProvider(
+          providers: [
+          ChangeNotifierProvider(create: (_)=> ProviderController()),
+          ChangeNotifierProvider(create: (_)=> ProviderController2()),
+        ],
+        child: ProviderStateScreen(),
+        ),
+
+        // ChangeNotifierProvider.value(
+        //     value: ProviderController(),
+        //     child: ProviderStateScreen()),
+        // LoginScreen()
         // SplachScreen()
         // NavigationWorkSpase(),
         );
