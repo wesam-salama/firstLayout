@@ -6,6 +6,7 @@ import 'package:layouts/Navigation_pages/page2.dart';
 
 import 'package:layouts/helpers/sp_helper.dart';
 import 'package:layouts/screens/auth/login_screen.dart';
+import 'package:layouts/screens/favorites/contoller/my_favorite_controller.dart';
 import 'package:layouts/screens/provider_state/provider_controller.dart';
 import 'package:layouts/screens/provider_state/provider_controllrt_2.dart';
 import 'package:layouts/screens/provider_state/provider_state_screen.dart';
@@ -16,10 +17,15 @@ import 'package:layouts/widgets/main_cat_section.dart';
 import 'package:layouts/widgets/special_offers_item.dart';
 import 'package:provider/provider.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SPHelper.spHelper.initSharedPreferences();
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    // ChangeNotifierProvider(create: (_)=> ProviderController()),
+    // ChangeNotifierProvider(create: (_)=> ProviderController2()),
+    //   ChangeNotifierProvider.value(value: MyFavoriteController()),
+    ChangeNotifierProvider(create: (_) => MyFavoriteController()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,32 +35,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-          useMaterial3: true,
-        ),
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        useMaterial3: true,
+      ),
 
-        home: MultiProvider(
-          providers: [
-          ChangeNotifierProvider(create: (_)=> ProviderController()),
-          ChangeNotifierProvider(create: (_)=> ProviderController2()),
-        ],
-        child: ProviderStateScreen(),
-        ),
+      home: SplachScreen(),
 
-        // ChangeNotifierProvider.value(
-        //     value: ProviderController(),
-        //     child: ProviderStateScreen()),
-        // LoginScreen()
-        // SplachScreen()
-        // NavigationWorkSpase(),
-        );
+      // ChangeNotifierProvider.value(
+      //     value: ProviderController(),
+      //     child: ProviderStateScreen()),
+      // LoginScreen()
+      // SplachScreen()
+      // NavigationWorkSpase(),
+    );
   }
 }
-
-
 
 class NavigationWorkSpase extends StatefulWidget {
   const NavigationWorkSpase({super.key});

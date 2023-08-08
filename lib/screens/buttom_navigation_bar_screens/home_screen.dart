@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:layouts/screens/favorites/view/screens/favorites_screen.dart';
 import 'package:layouts/widgets/cat_item.dart';
 import 'package:layouts/widgets/main_cat_section.dart';
 import 'package:layouts/widgets/special_offers_item.dart';
@@ -60,15 +61,22 @@ class HomeScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: Icon(
-                        Icons.notifications,
-                        color: Color(0xff818181),
+                    InkWell(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                          return FavoritesScreen();
+                        }));
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                        child: Icon(
+                          Icons.notifications,
+                          color: Color(0xff818181),
+                        ),
                       ),
                     )
                   ],

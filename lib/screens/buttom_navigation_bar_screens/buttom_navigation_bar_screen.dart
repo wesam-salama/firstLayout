@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:layouts/screens/buttom_navigation_bar_screens/favorites_screen.dart';
+import 'package:layouts/screens/favorites/view/screens/favorites_screen.dart';
 import 'package:layouts/screens/buttom_navigation_bar_screens/home_screen.dart';
 import 'package:layouts/screens/buttom_navigation_bar_screens/profile_screen.dart';
 import 'package:layouts/screens/buttom_navigation_bar_screens/track_screen.dart';
@@ -16,12 +16,12 @@ class ButtomNavigationScreen extends StatefulWidget {
 class _ButtomNavigationScreenState extends State<ButtomNavigationScreen> {
   int _selectedIndex = 0;
 
-  List<Widget> bodyScreens = <Widget>[
-    HomeScreen(),
-    FavoritesScreen(),
-    TrackScreen(),
-    ProfileScreen(),
-  ];
+  // List<Widget> bodyScreens = <Widget>[
+  //   HomeScreen(),
+  //   FavoritesScreen(),
+  //   TrackScreen(),
+  //   ProfileScreen(),
+  // ];
 
   _onItemTapped(int index) {
     setState(() {
@@ -33,25 +33,29 @@ class _ButtomNavigationScreenState extends State<ButtomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: bodyScreens.elementAt(_selectedIndex),
-      // _selectedIndex == 0
-      //     ? HomeScreen()
-      //     : _selectedIndex == 1
-      //         ? FavoritesScreen()
-      //         : _selectedIndex == 2
-      //             ? TrackScreen()
-      //             : ProfileScreen(),
+      body:
+      // bodyScreens.elementAt(_selectedIndex),
+      Builder(builder: (BuildContext context) {
+        return _selectedIndex == 0
+            ? const HomeScreen()
+            : _selectedIndex == 1
+            ? const FavoritesScreen()
+            : _selectedIndex == 2
+            ? const TrackScreen()
+            : const ProfileScreen();
+      },),
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Color(0xff23AA49),
+        selectedItemColor: const Color(0xff23AA49),
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               'assets/images/home.svg',
               colorFilter: ColorFilter.mode(
-                  _selectedIndex == 0 ? Color(0xff23AA49) : Color(0xff818181),
+                  _selectedIndex == 0 ? const Color(0xff23AA49) : const Color(0xff818181),
                   BlendMode.srcIn),
             ),
             label: '',
@@ -63,8 +67,8 @@ class _ButtomNavigationScreenState extends State<ButtomNavigationScreen> {
                     'assets/images/heart.svg',
                     colorFilter: ColorFilter.mode(
                         _selectedIndex == 1
-                            ? Color(0xff23AA49)
-                            : Color(0xff818181),
+                            ? const Color(0xff23AA49)
+                            : const Color(0xff818181),
                         BlendMode.srcIn),
                   ),
                 ],
@@ -78,8 +82,8 @@ class _ButtomNavigationScreenState extends State<ButtomNavigationScreen> {
                     'assets/images/location.svg',
                     colorFilter: ColorFilter.mode(
                         _selectedIndex == 2
-                            ? Color(0xff23AA49)
-                            : Color(0xff818181),
+                            ? const Color(0xff23AA49)
+                            : const Color(0xff818181),
                         BlendMode.srcIn),
                   ),
                 ],
@@ -89,14 +93,14 @@ class _ButtomNavigationScreenState extends State<ButtomNavigationScreen> {
               icon: SvgPicture.asset(
                 'assets/images/profile.svg',
                 colorFilter: ColorFilter.mode(
-                    _selectedIndex == 3 ? Color(0xff23AA49) : Color(0xff818181),
+                    _selectedIndex == 3 ? const Color(0xff23AA49) : const Color(0xff818181),
                     BlendMode.srcIn),
               ),
               label: ''),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xff23AA49),
+        backgroundColor: const Color(0xff23AA49),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         onPressed: () {},
         child: SvgPicture.asset(
