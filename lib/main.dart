@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:layouts/Navigation_pages/page3.dart';
 import 'package:layouts/Navigation_pages/page1.dart';
@@ -10,6 +11,7 @@ import 'package:layouts/screens/favorites/contoller/my_favorite_controller.dart'
 import 'package:layouts/screens/provider_state/provider_controller.dart';
 import 'package:layouts/screens/provider_state/provider_controllrt_2.dart';
 import 'package:layouts/screens/provider_state/provider_state_screen.dart';
+import 'package:layouts/screens/responsive/responsive_screen.dart';
 import 'package:layouts/screens/speacial_offers/controller/special_offers_controller.dart';
 import 'package:layouts/screens/splach/splach_screen.dart';
 import 'package:layouts/widgets/cat_item.dart';
@@ -37,23 +39,30 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-        useMaterial3: true,
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(428, 926),
+      builder: (BuildContext context, Widget? child) {
+      return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+            useMaterial3: true,
+          ),
 
-      home: SplachScreen(),
+          home: ResponsiveScreen()
+        // SplachScreen(),
 
-      // ChangeNotifierProvider.value(
-      //     value: ProviderController(),
-      //     child: ProviderStateScreen()),
-      // LoginScreen()
-      // SplachScreen()
-      // NavigationWorkSpase(),
-    );
+        // ChangeNotifierProvider.value(
+        //     value: ProviderController(),
+        //     child: ProviderStateScreen()),
+        // LoginScreen()
+        // SplachScreen()
+        // NavigationWorkSpase(),
+      );
+    },);
+
+
   }
 }
 

@@ -33,8 +33,7 @@ class _SpecialScreenState extends State<SpecialScreen> {
               itemCount: provider.specialOffersDataList?.length ?? 0,
               itemBuilder: (BuildContext context, int index) {
                 return SpecialOffersItem(
-                  imageURL:
-                  provider.specialOffersDataList?[index].imageURL,
+                  imageURL: provider.specialOffersDataList?[index].imageURL,
                   per: provider.specialOffersDataList?[index].per,
                   des: provider.specialOffersDataList?[index].des,
                   colors: [Color(0xff000000), Color(0xff5B447A)],
