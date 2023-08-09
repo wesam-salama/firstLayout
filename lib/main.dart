@@ -10,11 +10,12 @@ import 'package:layouts/screens/favorites/contoller/my_favorite_controller.dart'
 import 'package:layouts/screens/provider_state/provider_controller.dart';
 import 'package:layouts/screens/provider_state/provider_controllrt_2.dart';
 import 'package:layouts/screens/provider_state/provider_state_screen.dart';
+import 'package:layouts/screens/speacial_offers/controller/special_offers_controller.dart';
 import 'package:layouts/screens/splach/splach_screen.dart';
 import 'package:layouts/widgets/cat_item.dart';
 import 'package:layouts/widgets/home_item.dart';
 import 'package:layouts/widgets/main_cat_section.dart';
-import 'package:layouts/widgets/special_offers_item.dart';
+import 'package:layouts/screens/speacial_offers/view/widgets/special_offers_item.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -25,6 +26,8 @@ void main() async {
     // ChangeNotifierProvider(create: (_)=> ProviderController2()),
     //   ChangeNotifierProvider.value(value: MyFavoriteController()),
     ChangeNotifierProvider(create: (_) => MyFavoriteController()),
+    ChangeNotifierProvider(create: (_) => SpecialOffersController()),
+
   ], child: const MyApp()));
 }
 

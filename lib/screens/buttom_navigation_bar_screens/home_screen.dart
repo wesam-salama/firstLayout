@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:layouts/screens/favorites/view/screens/favorites_screen.dart';
+import 'package:layouts/screens/speacial_offers/view/screens/special_offers_screen.dart';
 import 'package:layouts/widgets/cat_item.dart';
 import 'package:layouts/widgets/main_cat_section.dart';
-import 'package:layouts/widgets/special_offers_item.dart';
+import 'package:layouts/screens/speacial_offers/view/widgets/special_offers_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -63,9 +64,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-                          return FavoritesScreen();
-                        }));
+                        // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                        //   return FavoritesScreen();
+                        // }));
                       },
                       child: Container(
                         width: 50,
@@ -195,15 +196,24 @@ class HomeScreen extends StatelessWidget {
               //     )
               //   ],),
               // ),
-              SpecialOffersItem(
-                imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRln7UCQ6eQtrC22xevgI1zhMjzQpl6xDK1Yw&usqp=CAU',
-                per: 33.3,
-                colors: [Color(0xff23AA49), Color(0xff5BE07A)],
-              ),
+              // SpecialOffersItem(
+              //   imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRln7UCQ6eQtrC22xevgI1zhMjzQpl6xDK1Yw&usqp=CAU',
+              //   per: 33.3,
+              //   colors: [Color(0xff23AA49), Color(0xff5BE07A)],
+              //   onTap: (){
+              //
+              //   },
+              // ),
               SpecialOffersItem(
                 imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRln7UCQ6eQtrC22xevgI1zhMjzQpl6xDK1Yw&usqp=CAU',
                 per: 50,
+                des: 'test',
                 colors: [Color(0xff000000), Color(0xff5B447A)],
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                    return SpecialScreen();
+                  }));
+                },
               ),
               MainCatSection(
                 mainCatTitle: homeTopRatedDate['cat_title'],
