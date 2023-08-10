@@ -6,8 +6,13 @@ import 'package:layouts/Navigation_pages/page1.dart';
 import 'package:layouts/Navigation_pages/page2.dart';
 
 import 'package:layouts/helpers/sp_helper.dart';
+import 'package:layouts/screens/Products/controller/product_details_controller.dart';
+import 'package:layouts/screens/Products/controller/products_controller.dart';
+import 'package:layouts/screens/Products/view/screens/products_screen.dart';
 import 'package:layouts/screens/auth/login_screen.dart';
 import 'package:layouts/screens/favorites/contoller/my_favorite_controller.dart';
+import 'package:layouts/screens/play_with_apis/get_cat_screen.dart';
+import 'package:layouts/screens/play_with_apis/store_provider.dart';
 import 'package:layouts/screens/provider_state/provider_controller.dart';
 import 'package:layouts/screens/provider_state/provider_controllrt_2.dart';
 import 'package:layouts/screens/provider_state/provider_state_screen.dart';
@@ -29,6 +34,11 @@ void main() async {
     //   ChangeNotifierProvider.value(value: MyFavoriteController()),
     ChangeNotifierProvider(create: (_) => MyFavoriteController()),
     ChangeNotifierProvider(create: (_) => SpecialOffersController()),
+    ChangeNotifierProvider(create: (_) => StoreController()),
+    ChangeNotifierProvider(create: (_) => ProductsController()),
+    ChangeNotifierProvider(create: (_) => ProductDetailsController()),
+
+
 
   ], child: const MyApp()));
 }
@@ -50,7 +60,9 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
 
-          home: ResponsiveScreen()
+          home:  ProductsScreen()
+          // GetCatScreen()
+          // ResponsiveScreen()
         // SplachScreen(),
 
         // ChangeNotifierProvider.value(
